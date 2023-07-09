@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --job-name=pingpong
+#SBATCH --time=00:01:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=2
+#SBATCH --qos=short
+#SBATCH --reservation=shortqos
+
+# You can probably leave these options mostly as they are
+
+#SBATCH --output=%x-%j.out
+#SBATCH --exclusive
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=standard
+
+module load intel-compilers-19
+module load mpt
+
+# Launch the parallel job
+
+srun --unbuffered --distribution=block:block --hint=nomultithread ./pingpong
