@@ -36,20 +36,23 @@ following factors affect the performance:
 The code is contained in \verb+AMPP-pingpong.tar+ on the course web
 pages. You should be able to compile it using \verb+make+, and submit
 the supplied Slurm scripts unchanged. As distributed, the Makefile is
-set up for Cirrus but there are comments on how to compile on ARCHER2.
+set up for Bridges2.
 
-On Cirrus, you will need to load some non-default modules:
+On Bridges2, you will need to load a non-default module:
 \begin{verbatim}
-  [user@cirrus ~]$ module load mpt
-  [user@cirrus ~]$ module load intel-compilers-19
-  [user@cirrus ~]$ module load gnuplot
+  [user@bridges2 ~]$ module load openmpi
 \end{verbatim}
+
+You should compile the code with \texttt{make} and submit using \texttt{sbatch bridges2.job}.
 
 By default, the code runs on two processes each placed on the same
 node (so communications will {\bf not} take place over the
 network), and benchmarks standard and synchronous sends. Note that
 {\bf the program also prints out the exact location of the two
-  processes}.
+  processes} -- this will enable you to check, for example, whether the two processes
+are on the same or different nodes which is important as the message will only
+go over the network if you run on different nodes (although the performance
+within a node is interesting as it should be much faster).
 
 For each mode, two ``.plot'' files are written containing the times and
 the bandwidths as a function of message size. The results for the two
@@ -91,7 +94,7 @@ After having run the default setup -- two processes on cores 0 and 1
   processes with one process on each of two nodes.
 
 \item Communication between two processes widely separated on the same
-  node (e.g.  \verb+nodes=1+ and \verb+tasks-per-node=36+).
+  node (e.g.  \verb+nodes=1+ and \verb+tasks-per-node=128+).
 
 \item Can you explain any variations in the latency and bandwidth
   as you change the process locations?

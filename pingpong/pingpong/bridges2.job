@@ -2,8 +2,8 @@
 #SBATCH --job-name=pingpong
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
-#SBATCH --partition=RM-small
-# #SBATCH --reservation=ihpcssrm
+#SBATCH --partition=RM
+#SBATCH --reservation=ihpcssday1RM8
 #SBATCH --time=00:05:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=2
