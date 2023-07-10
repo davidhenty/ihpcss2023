@@ -1,5 +1,7 @@
 set logscale x
 set logscale y
+set term png
+set output "node1-c0c1-time.png"
 set xlabel "Message Size (Bytes)"
 set ylabel "Time (seconds)"
 plot \
